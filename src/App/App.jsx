@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <Link to ={'/'}><h1>Magic Digital Collection</h1></Link>
-      <Link to = {`/collection`}><button>My Collection</button></Link>
+      {/* <Link to = {`/collection`}><button>My Collection</button></Link> */}
       
       <collectionContext.Provider value = {collectionState}>
       <detailsContext.Provider value = {value}>

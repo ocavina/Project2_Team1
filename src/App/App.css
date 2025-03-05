@@ -1,11 +1,11 @@
 :root {
-  --primary-color: #007bff;
+  --primary-color: darkred;
   --hover-color: #0056b3;
   --bg-color: #f4f4f4;
-  --bg-dark: #222831;
+  --bg-dark: #333333;
   --text-color: #333;
   --text-light: #fff;
-  --font-family: 'Arial', sans-serif;
+  --font-family: 'Spectral', serif;
   --base-font-size: 16px;
 }
 
@@ -16,6 +16,7 @@ body {
   padding: 0;
   background-color: var(--bg-color);
   color: var(--text-color);
+  text-align: center;
 }
 
 header {
@@ -29,6 +30,7 @@ header h1 {
   margin: 0;
   font-size: 2rem;
   color: var(--text-color);
+  font-family: 'Cinzel', serif;
 }
 
 a {
@@ -55,5 +57,5 @@ button {
 }
 
 button:hover {
-  background-color: var(--hover-color);
+  background-color: #61000078;
 }

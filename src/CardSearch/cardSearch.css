@@ -2,13 +2,22 @@ h2,
 p {
   text-align: center;
   margin: 10px 0;
+  color: white;
+}
+
+body {
+  font-family: 'Spectral', serif;
+  margin: 0;
+  padding: 0;
+  background: url('./public/images/modern_black.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  padding: 20px;
+  padding: 0;
   max-width: 1200px;
   margin: 20px auto;
   justify-content: center;
@@ -16,23 +25,24 @@ p {
 
 .card-image {
   position: relative;
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 5px;
-  overflow: hidden;
+  overflow: visible;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index:0;
 }
 
 .card-image:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 16px transparent(0,0,0,0.2);
+  z-index: 99;
 }
 
 .card-image img {
   width: 100%;
+  height: auto;
+  display: block;
   object-fit: cover;
-  border: none;
-  outline: none;
-  z-index: 2;
 }
 .card-image button {
   background: transparent;

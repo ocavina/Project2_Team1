@@ -1,0 +1,19 @@
+.collection-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+  gap: 20px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 20px auto;
+  justify-content: center;
+}
+
+img {
+    height: 204px;
+    width: 146px;
+}
+
+
+button{
+    margin: 10px;
+}

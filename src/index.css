@@ -1,12 +1,17 @@
 :root {
-  --primary-color: #007bff;
-  --hover-color: #0056b3;
-  --bg-color: #f4f4f4;
+  --primary-color: #4F0147;
+  --hover-color:#61000078;
+  --bg-color: #35012C;
   --bg-dark: #222831;
-  --text-color: #333;
+  --text-color: #f4f4f4;
   --text-light: #fff;
-  --font-family: 'Arial', sans-serif;
+  --font-family: 'Spectral', serif;
   --base-font-size: 16px;
+ 
+}
+
+html {
+  font-size: var(--base-font-size);
 }
 
 a {
@@ -15,15 +20,17 @@ a {
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  font-family: 'Spectral', serif;
+font-size: 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   line-height: 1.6;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-family: 'Cinzel', serif;
 }
 
 button {
@@ -33,12 +40,12 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: darkred;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #61000078;
 }
 
 @media (prefers-color-scheme: light) {
@@ -47,7 +54,7 @@ button:hover {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #61000078;
   }
   button {
     background-color: #f9f9f9;

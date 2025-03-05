@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./home.css";
+import {Link} from 'react-router-dom';
 
 
 export default function Home(){
-    const [search, setSearch] = useState("Search");
+    const [search, setSearch] = useState("");
     const Navigate = useNavigate();
     const [data, setData] = useState();
     const [loading, setLoading] = useState();
@@ -12,7 +13,8 @@ export default function Home(){
     const [power, setPower] = useState(0);
     const [manaCost, setManaCost] = useState(0)
     const [filterURL, setFilterURL] = useState("");
-    const [whiteFilter, setWhiteFilter] = useState(false);
+
+
 
 
     var filter = {
@@ -33,29 +35,6 @@ export default function Home(){
     }
 
 
-    useEffect(() => {
-        setLoading(true)
-        console.log("fetching?")
-        fetch('https://api.scryfall.com/cards/random')
-            .then(res => {
-                if(res.status == 404){
-                    
-                }else(
-                    res = res.json()
-                )
-                return res
-            })
-            .then(fetchData => {setData(fetchData)})
-            setLoading(false)
-    }, [])
-
-    useEffect(() => {
-        filter.power = document.getElementById("power").value
-    }, [document.getElementById("power")])
-
-    if(data){
-        console.log(data.image_uris.normal)
-    }
 
     if(loading){
         return <h1>Loading...</h1>
@@ -82,41 +61,94 @@ export default function Home(){
             url.push("c%3Ared")
         }
         if(manaCost != 0 && manaCost >= url.length){
-            url.push("mv%3D" + manaCost)
+            if(manaCost == 9){
+                url.push("cmc>" + manaCost)
+            }else(
+                url.push("cmc=" + manaCost)
+            )
         }
         if(toughness != 0){
-            url.push("Toughness" + toughness)
+            url.push("tou%3D" + toughness)
         }
         if(power.value != 0){
             url.push("pow%3D" + power.value)
         }
-        console.log(url)
-        console.log(document.getElementById("power"))
+        url = url.join("+")
+        
+        Navigate('/search/' + url ) 
     }
 
-    return(
-        <>  
-            {/* filter Nav */}
-            <nav>
+    return(  
+        <>
+              <Link to = {`/collection`}><button>My Collection</button></Link>
+        {/* search bar + search button */}
+        <div className="search-section">
+                <input 
+                    type="text" 
+                    spellCheck= "true"
+                    placeholder={search} 
+                    onInput={e => setSearch(e.target.value)} 
+                    onKeyDown={enterKeySearch} 
+                />
+                <button onClick={() => {if(search.length > 0){Navigate('/search/' + search)}} }> Search </button>
+        </div>
+                {/* click to show filter options */}
                 <input type="checkbox" id="check"/>
-                <label htmlFor="check" class="checkbtn">Filter</label>
+                <label htmlFor="check" class="checkbtn">Filter By:</label>
                 <div className='filter w3-animate-right'>
+                    {/* mana */}
                     <div className='mana'>
                         <div>
                             <label>Mana Cost</label>
                         </div>
                         <div className='manaCost'>
-                            <label>{filter.manaCost}+</label>
+                            <label>{filter.manaCost}</label>
                             <input 
                                 type="range" 
                                 min="0" 
                                 max="9" 
                                 step="1"
-                                value={manaCost} 
-                                onChange={(x) => console.log("manaCostRange")} 
+                                value={manaCost}
+                                onInput={e => setManaCost(e.target.value)}
                             />
                         </div>
                     </div>
+                    {/* power */}
+                    <div className='power'>
+                        <div>
+                            <label>Power</label>
+                        </div>
+                        <div>
+                            <label>{filter.power}</label>
+                            <input 
+                                id = "power"
+                                type="range" 
+                                defaultValue={0}
+                                min="0" max="9" 
+                                step="1" 
+                                onInput={e => setPower(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    {/* toughness */}
+                    <div className='toughness'>
+                        <div>
+                            <label>Toughness</label>
+                        </div>
+                        <div>
+                            <label>{filter.toughness}</label>
+                            <input 
+                                type="range" 
+                                min="0" 
+                                max="9" 
+                                step="1"
+                                id = "toughness"
+                                value={toughness}
+                                onInput={e => setToughness(e.target.value)} 
+                            />
+                        </div>
+                    </div>
+                    {/* color */}
                     <div className='color'>
                         <div>
                             <label>Color Type</label>
@@ -153,53 +185,15 @@ export default function Home(){
                             />
                         </div>
                     </div>
-                    <div className='power'>
-                        <div>
-                            <label>Power</label>
-                        </div>
-                        <div>
-                            <label>{filter.power}+</label>
-                            <input 
-                                id = "power"
-                                type="range" 
-                                defaultValue={0}
-                                min="0" max="9" 
-                                step="1" 
-                            />
-                        </div>
-                    </div>
-                    <div className='toughness'>
-                        <div>
-                            <label>Toughness</label>
-                        </div>
-                        <div>
-                            <label>{filter.toughness}+</label>
-                            <input 
-                                type="range" 
-                                min="0" 
-                                max="9" 
-                                step="1" 
-                                onChange={(e) => setToughness(9)} 
-                            />
-                        </div>
-                    </div>
+                    {/* submit button */}
                     <div className='submit'>
                         <button onClick={() => filters()}>Submit</button>
                     </div>
                 </div>
-            </nav>
 
 
-            <div className="container">
-                <input 
-                    type="text" 
-                    placeholder={search} 
-                    onInput={e => setSearch(e.target.value)} 
-                    onKeyDown={enterKeySearch} 
-                />
-                <button onClick={() => Navigate('/search/' + search)}> Search </button>
-            </div>
+            
         </>
         
     )
-}
+} 
