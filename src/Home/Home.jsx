@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { createElement, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./home.css";
 import {Link} from 'react-router-dom';
@@ -13,8 +13,34 @@ export default function Home(){
     const [power, setPower] = useState(0);
     const [manaCost, setManaCost] = useState(0)
     const [filterURL, setFilterURL] = useState("");
+    const [count, setCount] = useState(0);
+    const [cardData, setCardData] = useState([])
 
+    useEffect(() => {
+        setLoading(true)
+        fetch('https://api.scryfall.com/cards/random?format=image')
+        .then(res => {
+            if(res.status == 404){
+                error()
+            }
+            return res
+        })
+        .then(fetchData => {setData(fetchData) || counter()})
+        
+        
+    }, [count])
 
+    function counter(){
+        var temp = count
+        temp ++
+        console.log(temp)
+        if(temp !== 10){
+            setCount(temp)
+            setCardData([...cardData, data.url])
+        }else{
+            setLoading(false)
+        }
+    }
 
 
     var filter = {
@@ -190,6 +216,24 @@ export default function Home(){
                         <button onClick={() => filters()}>Submit</button>
                     </div>
                 </div>
+
+                <div id="cardCar" className='cardCar'>
+                    <div className='carousel'>
+                        <div className='figure'>
+                            {cardData.map((item) => (
+                                <span><img id="smallPicture" src={item} /> </span>           
+                            ))}
+                        </div>
+                    </div>
+                    <div aria-hidden="true" className='carousel'>
+                        <div className='figure'>
+                            {cardData.map((item) => (
+                                <span><img id="smallPicture" src={item} /> </span>           
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
 
 
             

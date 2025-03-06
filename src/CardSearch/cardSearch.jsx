@@ -124,7 +124,7 @@ export default function cardSearch(){
                     <div className='card-image' key={item.id}>
                         <Link to={`/cardInfo/${item.id}`}>
                             <button>
-                                <img  src={item.imgL} id="smallPicture" onMouseOver={(e) => {e.currentTarget.src=item.imgL; e.currentTarget.id="bigPicture" }} onMouseLeave={(e) => {e.currentTarget.src=item.img; e.currentTarget.id="smallPicture" }} onClick = {() => setDetails(item)}/>
+                                <img  src={item.imgL} id="smallPicture"  onClick = {() => setDetails(item)}/>
                             </button>
                         </Link>
                     </div>              

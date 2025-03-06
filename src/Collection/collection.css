@@ -13,6 +13,10 @@ img {
     width: 146px;
 }
 
+img:hover {
+  transform: scale(1.05);
+}
+
 
 button{
     margin: 10px;

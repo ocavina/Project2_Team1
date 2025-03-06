@@ -132,7 +132,7 @@ export default function collection(){
             <div className="favorite-card" key={item} onMouseOver = {() => setShowingRemove(index)} onMouseOut = {() => setShowingRemove(null)}>
                 <Link to={`/cardInfo/${item.id}`} onClick={() => setDetails(item)}>
                 <img src={item.img} alt={item.name} />
-                <p>{item.price}</p>
+                <p>{(item.price)}</p>
                 </Link>
                 {showingRemove === index && (<button onClick={() => removeFromCollection(index)}>Remove</button>
             )}

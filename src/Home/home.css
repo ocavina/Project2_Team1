@@ -183,3 +183,54 @@ button{
   align-items: center;
 }
 
+img{
+  height: 204px;
+  width: 146px;
+}
+
+.figure{
+  margin: 0;
+  max-width: 1983px;
+  /* width: 100%; */
+  margin-right: 0px;
+  padding-right: 0px;
+  display: inline-block;
+}
+
+#smallPicture{
+  height: 306px;
+  width: 219px;
+
+  margin: 30px;
+}
+
+.cardCar{
+  * {
+    flex: 0 0 100%;
+  }
+  display: flex;
+  height: 350px;
+}
+
+figure{
+  margin: 0;
+  padding: 0;
+}
+
+.carousel {
+  margin: 0 auto;
+  display: flex;
+  overflow: hidden;
+  will-change: transform;
+  animation: scroll 20s linear infinite;
+  width: fit-content;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

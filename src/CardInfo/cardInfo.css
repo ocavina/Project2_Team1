@@ -60,3 +60,7 @@
   height: 204px;
   width: 146px;
 }
+
+#smallPictures:hover{
+  transform: scale(1.05);
+}
