@@ -3,7 +3,8 @@ body {
   margin: 0;
   padding: 0;
   background-color: #222831;
-  background: url('./public/images/modern_black.jpg') no-repeat center center fixed;
+  /* background-color: white; */
+  background: url('./images/modern_black.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -190,26 +191,29 @@ img{
 
 .figure{
   margin: 0;
-  max-width: 1983px;
+  /* max-width: 1983px; */
   /* width: 100%; */
   margin-right: 0px;
   padding-right: 0px;
-  display: inline-block;
+  display: block;
 }
 
 #smallPicture{
   height: 306px;
   width: 219px;
-
   margin: 30px;
 }
 
 .cardCar{
   * {
-    flex: 0 0 100%;
+    flex: 0 0 1980px;
   }
   display: flex;
   height: 350px;
+  overflow: hidden;
+  &:hover .carousel{
+    animation-play-state: paused;
+  }
 }
 
 figure{
@@ -223,8 +227,12 @@ figure{
   overflow: hidden;
   will-change: transform;
   animation: scroll 20s linear infinite;
+  
   width: fit-content;
 }
+
+
+
 
 @keyframes scroll {
   0% {
@@ -233,4 +241,16 @@ figure{
   100% {
     transform: translateX(-100%);
   }
+}
+
+
+
+
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 43vh;
+  left: 43vw;
 }

@@ -7,11 +7,14 @@
   --text-light: #fff;
   --font-family: 'Spectral', serif;
   --base-font-size: 16px;
+  height: 100vh;
  
 }
 
 html {
   font-size: var(--base-font-size);
+  background-color: black;
+  height: 100vh;
 }
 
 a {
@@ -21,9 +24,11 @@ a {
 
 body {
   font-family: 'Spectral', serif;
-font-size: 1rem;
+  font-size: 1rem;
   background-color: var(--bg-color);
   color: var(--text-color);
+  background: url("./public/images/modern_black.jpg");
+  background-size: cover;
   line-height: 1.6;
 }
 

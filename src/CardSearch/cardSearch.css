@@ -18,8 +18,9 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   padding: 0;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 20px auto;
+  margin-right: 50px;
   justify-content: center;
 }
 

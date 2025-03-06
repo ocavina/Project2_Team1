@@ -1,6 +1,7 @@
 import detailsContext from '../assets/detailsContext';
 import { useState, useContext, useEffect } from 'react';
 import collectionContext from '../assets/collectionContext';
+import { useLocalStorage } from "@uidotdev/usehooks";
 import "./cardInfo.css";
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -22,26 +23,60 @@ export default function cardInfo(){
     const [alt, setAlt] = useState()
     const [done, setDone] = useState(false)
     const navigate = useNavigate();
+    const [showCardAddedMessage, setShowCardAddedMessage] = useState(false)
     var printImgArry = [];
     var printPriceArry = [];
     var cardData = [];
+
+
+    const [lStorage, savelStorage] = useLocalStorage('lstorage', []);
+
+    useEffect(() => {
+        setCollection(lStorage)
+    }, [])
+
+    useEffect(() => {
+        savelStorage(collection)
+    }, [collection]);
+
+
+    function clearLocalStorage(){
+        console.log(lStorage)
+        localStorage.clear('lstorage')
+        console.log(lStorage, "should be empty")
+    }
+
+    
     
     function addToCollection(){
         for(let i of cardData){
             if(i.id == mainId){
                 setCollection([...collection, i])
+                console.log(collection)
             }
+            setShowCardAddedMessage(true);
+            setTimeout(() => {
+                setShowCardAddedMessage(false)
+            }, 3000)
         }
         ;
     }
+
+    
     
     
 
     const backButton = () => {
         navigate(-1);
     }
+
+    // const cardAddedMessage = () => {
+    //     setShowCardAddedMessage(true);
+    //         setTimeout(() => {
+    //             setShowCardAddedMessage(false)
+    //         }, 3000)
+    // }
     
-    console.log(details)
     useEffect(() => {
         setLoading(true)
         fetch('https://api.scryfall.com/cards/'+ window.location.pathname.slice(10))
@@ -171,6 +206,8 @@ export default function cardInfo(){
                 </div>
 
                 <button onClick={() => addToCollection()}>Add</button>
+                {showCardAddedMessage && (
+                    <div className = "card-added-message">Card Added to Collection</div>)}
                 <button onClick={backButton}>Back</button>
 
                 

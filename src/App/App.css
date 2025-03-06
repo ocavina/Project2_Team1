@@ -1,13 +1,16 @@
 :root {
   --primary-color: darkred;
   --hover-color: #0056b3;
-  --bg-color: #f4f4f4;
+  --bg-color: black;
   --bg-dark: #333333;
   --text-color: #333;
   --text-light: #fff;
   --font-family: 'Spectral', serif;
   --base-font-size: 16px;
+  
 }
+
+
 
 body {
   font-family: var(--font-family);
@@ -15,6 +18,8 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--bg-color);
+  background: url("./public/images/modern_black.jpg?v=0");
+  background-image: url("./public/images/modern_black.jpg?v=0") no-repeat center center fixed;
   color: var(--text-color);
   text-align: center;
 }

@@ -30,13 +30,15 @@ export default function Home(){
         
     }, [count])
 
+
     function counter(){
         var temp = count
         temp ++
         console.log(temp)
         if(temp !== 10){
             setCount(temp)
-            setCardData([...cardData, data.url])
+            // https://cards.scryfall.io/large/front/c/a/cac912bb-f18a-4501-a5c0-aed8cb0a9e43.jpg?1561758087
+            setCardData([...cardData, {url: data.url, id: data.url.slice(42, 78)}])
         }else{
             setLoading(false)
         }
@@ -63,7 +65,11 @@ export default function Home(){
 
 
     if(loading){
-        return <h1>Loading...</h1>
+        return (
+                <>  
+                    <h1 className='loader'>Loading...</h1>
+                </>
+        )
     }
 
     function filters(){
@@ -119,8 +125,8 @@ export default function Home(){
                 <button onClick={() => {if(search.length > 0){Navigate('/search/' + search)}} }> Search </button>
         </div>
                 {/* click to show filter options */}
-                <input type="checkbox" id="check"/>
-                <label htmlFor="check" class="checkbtn">Filter By:</label>
+                <input type="checkbox" id="check" hidden="true"/>
+                <label htmlFor="check" class="checkbtn"><h2>Filter</h2></label>
                 <div className='filter w3-animate-right'>
                     {/* mana */}
                     <div className='mana'>
@@ -221,14 +227,22 @@ export default function Home(){
                     <div className='carousel'>
                         <div className='figure'>
                             {cardData.map((item) => (
-                                <span><img id="smallPicture" src={item} /> </span>           
+                                <span><img id="smallPicture" src={item.url} onClick={() => Navigate("/cardInfo/" + item.id) } /> </span>    
+                                // onClick={() => Navigate("/cardInfo/:id", item.id) }       
                             ))}
                         </div>
                     </div>
                     <div aria-hidden="true" className='carousel'>
                         <div className='figure'>
                             {cardData.map((item) => (
-                                <span><img id="smallPicture" src={item} /> </span>           
+                                <span><img id="smallPicture" src={item.url} onClick={() => Navigate("/cardInfo/" + item.id) } /> </span>           
+                            ))}
+                        </div>
+                    </div>
+                    <div aria-hidden="true" className='carousel'>
+                        <div className='figure'>
+                            {cardData.map((item) => (
+                                <span><img id="smallPicture" src={item.url} onClick={() => Navigate("/cardInfo/" + item.id) } /> </span>           
                             ))}
                         </div>
                     </div>

@@ -2,15 +2,49 @@ import { useState, useEffect, useContext } from 'react'
 import "./cardSearch.css"
 import { Link } from "react-router-dom";
 import detailsContext from '../assets/detailsContext';
+import cardInfo from '../CardInfo/cardInfo';
+import collectionContext from '../assets/collectionContext';
+
 
 export default function cardSearch(){
     const [query, setQuery] = useState(window.location.pathname.slice(8))
     const [data, setData] = useState()
     const [loading, setLoading] = useState(false)
     const {setDetails} = useContext(detailsContext)
+    const {collection, setCollection} = useContext(collectionContext);
+    const [addCardFromSearch, setAddCardFromSearch] = useState(null)
+
     var cardData = [];
     var num = 0
+
+    // Ethan
+
+    function addToCollection(index){
+        for(let i of cardData){
+            if(i.id){
+                setCollection([...collection, i])
+                console.log(collection)
+            }
+    //         // setShowCardAddedMessage(true);
+    //         // setTimeout(() => {
+    //         //     setShowCardAddedMessage(false)
+    //         // }, 3000)
+        }
+    }
+
+
     
+
+    // const mouseOverCardAdd = () => {
+    //     setAddCardFromSearch(true);
+    // }
+
+    // const mouseAwayFromCardAdd = () => {
+    //     setAddCardFromSearch(false);
+    // }
+    
+    // Ethan
+
 
     //fixes the mess that is the url into readable format for the user
     var searchStringer = window.location.pathname.slice(8).split("+")
@@ -120,15 +154,26 @@ export default function cardSearch(){
             <p>You searched for {searchStringer}:</p>
             <p>Showing {num} results</p>
             <div className="card-container">
-                {cardData.map((item) => (
-                    <div className='card-image' key={item.id}>
+                {cardData.map((item, index) => (
+                    <div className='card-image' key={item.id} onMouseOver = {() => setAddCardFromSearch(index)} onMouseOut = {() => setAddCardFromSearch(null)}>
                         <Link to={`/cardInfo/${item.id}`}>
                             <button>
                                 <img  src={item.imgL} id="smallPicture"  onClick = {() => setDetails(item)}/>
                             </button>
                         </Link>
+                            {/* Ethan */}
+                            {addCardFromSearch === index && (<button onClick={() => addToCollection(index)}>Add</button>
+                        )}
+                              {/* Ethan */}
                     </div>              
             ))}
+
+
+            {/* <div className="favorite-card" key={item} onMouseOver = {() => setAddCardFromSearch(index)} onMouseOut = {() => setAddCardFromSearch(null)}>
+            {addCardFromSearch === index && <button onClick={() => addToCollection(index)}>Add</button>}
+                {showCardAddedMessage && (
+                <div className = "card-added-message">Card Added to Collection</div>)} */}
+                {/* </div> */}
             </div>
             {cardData.length == 0 ? <><h2>Your Search Did not match any results</h2> <Link to={"/"}><button>Back to search</button></Link> </>: <></>}
         </>

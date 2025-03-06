@@ -21,3 +21,26 @@ img:hover {
 button{
     margin: 10px;
 }
+
+.remove-all-confirmation {
+  position: fixed;
+  top: 21%;
+  left: 36%;
+  padding: 15px;
+  transform: scale(1);
+  background-color: rgba(139, 0, 0);
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  font-size: larger;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 80px;
+}
+
+.remove-all-buttons  button {
+  border: 1.5px solid;
+  border-color: white;
+  width: 100px;
+}

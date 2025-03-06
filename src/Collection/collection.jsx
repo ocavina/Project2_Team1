@@ -1,9 +1,10 @@
-import {useContext, useEffect, useState, useLocalStorage} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import detailsContext from '../assets/detailsContext';
 import collectionContext from '../assets/collectionContext';
 import { useNavigate } from 'react-router-dom';
 import "./collection.css";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 
 
@@ -15,41 +16,19 @@ export default function collection(){
     const [showRemoveAllWarning, setShowRemoveAllWarning] = useState(false)
     const [collectionCost, setCollectionCost] = useState()
     const [done, setDone] = useState(false);
-    // const [combinedCollection, setCombinedCollection] = useState()
-    // const items = (localStorage.getItem('lcollection'))
     var cPrice = 0.00;
 
+
+    const [lStorage, savelStorage] = useLocalStorage('lstorage', []);
     
+    useEffect(() => {
+        setCollection(lStorage)
+    }, [])
 
-    // console.log(collection, "collection")
-    
+    useEffect(() => {
+        savelStorage(collection)
+    }, [collection]);
 
-    
-    // useEffect(() => {
-      
-    //   console.log(collection)
-    //   // localStorage.setItem("lcollection", collection)
-    //   if(items !== collection){
-    //     setCollection([...collection, JSON.stringify(items)])
-        
-    //   }
-    // }, []);
-
-    // useEffect(() => {
-    //   localStorage.setItem("lcollection", collection)
-    // }, [collection])
-
-    console.log(collection)
-
-    // console.log(itemspt2)
-
-    
-
-    
-
-    // for(let i of localStorage.getItem('colleciton')){
-    //   console.log(i)
-    // }
 
     
 
@@ -95,6 +74,7 @@ export default function collection(){
         const updatedCollection = [];
         setCollection(updatedCollection);
         setShowRemoveAllWarning(false);
+        clearLocalStorage()
     }
 
     const noDontRemoveAll = () => {
@@ -122,9 +102,11 @@ export default function collection(){
         <p>Total Collection Value: {collectionCost}</p>
         <button onClick={() => removeAllFromCollection()}>Remove All</button>
         {showRemoveAllWarning && (
-        <div className = "remove-all-confirmation"><p>Are You Sure You Want to Remove All?</p>
-        <button onClick = {yesRemoveAll}>Yes</button>
-        <button onClick = {noDontRemoveAll}>No</button>
+        <div className = "remove-all-confirmation">Are You Sure You Want to Remove All?
+        <div className = 'remove-all-buttons'>
+            <button onClick = {yesRemoveAll}>Yes</button>
+            <button onClick = {noDontRemoveAll}>No</button>
+        </div>
         </div>)}
         <button onClick={backButton}>Back</button>
         <div className="collection-container">
