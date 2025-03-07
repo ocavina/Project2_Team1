@@ -68,9 +68,9 @@
 .card-added-message {
   position: fixed;
   top: 50%;
-  left: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2);
   padding: 15px;
-  transform: scale(2);
   background-color: rgba(139, 0, 0, 0.95);
   border-radius: 10px;
   color: white;

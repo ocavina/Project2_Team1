@@ -23,11 +23,11 @@ button{
 }
 
 .remove-all-confirmation {
-  position: fixed;
-  top: 21%;
-  left: 36%;
+  position: absolute;
+  top: 25%;
+  left: 50%;
   padding: 15px;
-  transform: scale(1);
+  transform: translate(-50%, -50%) scale(1);
   background-color: rgba(139, 0, 0);
   border-radius: 10px;
   color: white;
@@ -36,7 +36,11 @@ button{
   display: flex;
   flex-direction: column;
   width: 500px;
-  height: 80px;
+  height: 90px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
 }
 
 .remove-all-buttons  button {

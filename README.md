@@ -20,6 +20,8 @@ Wireframe for the basic original intention of the application:
 ![Wireframe Details](/public/images/cardinfowireframe.png)
 ![Wireframe Collection](/public/images/cardcollectionwireframe.png)
 
+[Kanban Board](https://trello.com/invite/b/67c609a7266ddaaa8897b75b/ATTI52db1f3e47ca84627f904160936b3d334AB9B15F/group-1-magic-card-game-app)
+
 ### Demo
 
 ![Homepage](/public/images/magichome.png)
@@ -50,7 +52,7 @@ Wireframe for the basic original intention of the application:
 
 ### Run Tests
 
-npm test
+    npm test
 
 ### Acknowledgements
 
@@ -61,3 +63,7 @@ npm test
 **Scryfall API**: This is the API we fetched all our data from. Where the images and all the details used came from.
 
 **readme.so**: Used to structure ReadMe.md
+
+### Authors
+
+**Ethan Diem, Lorena Longoria, Damon Hayes, Oscar Avina**
