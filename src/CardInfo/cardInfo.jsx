@@ -40,12 +40,6 @@ export default function cardInfo(){
     }, [collection]);
 
 
-    function clearLocalStorage(){
-        console.log(lStorage)
-        localStorage.clear('lstorage')
-        console.log(lStorage, "should be empty")
-    }
-
     
     
     function addToCollection(){
@@ -86,6 +80,7 @@ export default function cardInfo(){
     function firstcard(i){
         console.log(i)
         var cardObj = {}
+        console.log(i)
         if(i.image_uris){
             printImgArry.push(i.image_uris.normal)
             cardObj.img = i.image_uris.normal
@@ -189,7 +184,7 @@ export default function cardInfo(){
                     <p className = "flavor_text">{flavor}</p>
                     <p className = "power_toughness">Power/Toughness: {power ? power : "N/A"}</p>
                     <p className = "set_name">Set Name: {mainSet}</p>
-                    {/* <p className = "rarity">Rarity: {details.rarity.charAt(0).toUpperCase(details.rarity)+ details.rarity.slice(1)}</p> */}
+                    <p className = "rarity">{details.rarity ? ("Rarity: " + details.rarity.charAt(0).toUpperCase(details.rarity)+ details.rarity.slice(1)) : "" }</p>
                 </div>
 
                 <button onClick={() => addToCollection()}>Add</button>
@@ -202,7 +197,7 @@ export default function cardInfo(){
             <div className="card-card">
                     {cardData.map((item) => (
                         <div className='individual-card' key={item.id}>
-                            <img  src={item.img} id="smallPictures" onClick={e => {setMainImg(item.img); setMainPrice(item.price); setMainSet(item.set); setMainId(item.id)}}/>
+                            <img  src={item.img ? item.img : "/public/images/cardBack.jpeg"} id="smallPictures" onClick={e => {setMainImg(item.img ? item.img : "/public/images/cardBack.jpeg"); setMainPrice(item.price); setMainSet(item.set); setMainId(item.id)}}/>
                             <p>{cardData.price}</p>         
                         </div>
                     ))}

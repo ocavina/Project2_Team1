@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import detailsContext from '../assets/detailsContext';
 import cardInfo from '../CardInfo/cardInfo';
 import collectionContext from '../assets/collectionContext';
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 
 export default function cardSearch(){
@@ -18,10 +19,18 @@ export default function cardSearch(){
     var cardData = [];
     var num = 0
 
-    // Ethan
+    const [lStorage, savelStorage] = useLocalStorage('lstorage', []);
+    
+    useEffect(() => {
+        setCollection(lStorage)
+    }, [])
+
+    useEffect(() => {
+        savelStorage(collection)
+    }, [collection]);
 
     function addToCollection(card){
-        setCollection([...collection, card])
+            setCollection([...collection, card])
             setShowCardAddedMessage(true);
             console.log(collection)
             setTimeout(() => {
@@ -30,17 +39,6 @@ export default function cardSearch(){
         }
 
 
-    
-
-    // const mouseOverCardAdd = () => {
-    //     setAddCardFromSearch(true);
-    // }
-
-    // const mouseAwayFromCardAdd = () => {
-    //     setAddCardFromSearch(false);
-    // }
-    
-    // Ethan
 
 
     //fixes the mess that is the url into readable format for the user
@@ -154,21 +152,18 @@ export default function cardSearch(){
                 {cardData.map((item, index) => (
                     <div className='card-image' key={item.id} onMouseOver = {() => setAddCardFromSearch(index)} onMouseOut = {() => setAddCardFromSearch(null)}>
                         <Link to={`/cardInfo/${item.id}`}>
-                            <button>
-                                <img  src={item.imgL} id="smallPicture" onClick = {() => setDetails(item)}/>
+                            <button className='imgButton'>
+                                <img  src={item.imgL ? item.imgL : "/public/images/cardBack.jpeg"} id="smallPicture" onClick = {() => setDetails(item)}/>
                             </button>
                         </Link>
                             {/* Ethan */}
-                            {addCardFromSearch === index && (<button onClick = {() => addToCollection(item)}>Add</button>
-                        )}
-                              {/* Ethan */}
+                            {addCardFromSearch === index && (
+                                <button className="add-btn" onClick = {() => addToCollection(item)}>Add</button>
+                            )}
+                            {/* Ethan */}
                     </div>              
             ))}
 
-
-            {/* <div className="favorite-card" key={item} onMouseOver = {() => setAddCardFromSearch(index)} onMouseOut = {() => setAddCardFromSearch(null)}>
-            {addCardFromSearch === index && <button onClick={() => addToCollection(index)}>Add</button>}
-            {/* </div> */}
             </div>
             {cardData.length == 0 ? <><h2>Your Search Did not match any results</h2> <Link to={"/"}><button>Back to search</button></Link> </>: <></>}
             {showCardAddedMessage && (

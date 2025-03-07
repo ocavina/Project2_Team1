@@ -20,7 +20,7 @@ body {
   background-color: var(--bg-color);
   /* background: url("./public/images/modern_black.jpg?v=0");
   background-image: url("./public/images/modern_black.jpg?v=0") no-repeat center center fixed; */
-  background: black;
+  background: midnightblue;
   color: var(--text-color);
   text-align: center;
 }

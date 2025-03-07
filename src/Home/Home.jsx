@@ -107,7 +107,10 @@ export default function Home(){
         }
         url = url.join("+")
         
-        Navigate('/search/' + url ) 
+        if(url.length > 0) {
+            Navigate('/search/' + url ) 
+        }
+        
     }
 
     return(  

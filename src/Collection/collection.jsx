@@ -30,6 +30,8 @@ export default function collection(){
         savelStorage(collection)
     }, [collection]);
 
+    console.log(collection)
+
 
     
 
@@ -47,10 +49,12 @@ export default function collection(){
     }
 
     for(let i of collection){
-      if(i.price !== undefined || parseFloat(i.price) !== NaN){
+      if(i.price !== undefined && !isNaN(parseFloat(i.price))){
         cPrice = parseFloat(cPrice) + (parseFloat(i.price))
       }
     }
+
+    console.log(typeof NaN)
 
     useEffect(() =>{
     const formattedPrice = cPrice
@@ -100,7 +104,7 @@ export default function collection(){
     return(
       <div>
         <h2>Collection Page</h2>
-        <p>Total Collection Value: {collectionCost}</p>
+        <p>Total Collection Value: {isNaN(collectionCost) ? "unavailalbe" : collectionCost}</p>
         <button onClick={() => removeAllFromCollection()}>Remove All</button>
         {showRemoveAllWarning && (
         <div className = "remove-all-confirmation">Are You Sure You Want to Remove All?

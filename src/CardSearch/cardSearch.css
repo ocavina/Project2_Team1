@@ -32,6 +32,10 @@ body {
   overflow: visible;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   z-index:0;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card-image:hover {
@@ -46,17 +50,37 @@ body {
   display: block;
   object-fit: cover;
 }
-.card-image button {
+.card-image .imgButton {
   background: transparent;
   border: none;
   padding: 0;
-  width: 100%;
+  width: fit-content;
   cursor: pointer;
+  justify-self: center;
 }
+
 .card-image button:focus,
 .card-image button:active {
   outline: none;
   box-shadow: none;
+}
+
+.add-btn {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: darkred;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  
+  width: fit-content;
+}
+
+.add-btn:hover {
+  background-color: #61000078; 
 }
 
 @media (max-width: 600px) {
@@ -64,8 +88,5 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 }
-
-
-
 
 

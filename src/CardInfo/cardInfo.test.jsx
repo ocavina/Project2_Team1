@@ -18,4 +18,31 @@ describe("cardInfo", () =>{
         // Assert
         expect(screen.getByText("Set Name:")).toBeInTheDocument();
     });
+
+    test("Renders the Add Button", () => {
+        // Act
+        //   No Act steps needed
+        // Assert
+        expect(screen.getByText("Add")).toBeInTheDocument();
+    });
+
+    test("Renders the Back Button", () => {
+        // Act
+        //   No Act steps needed
+        // Assert
+        expect(screen.getByText("Back")).toBeInTheDocument();
+    });
+
+    test("Renders the My Collection Button", () => {
+        // Act
+        //   No Act steps needed
+        // Assert
+        expect(screen.getByText("My Collection")).toBeInTheDocument();
+    });
+
+
+    test("Redirects the User to Another Page when Collection is Clicked", () => {
+        fireEvent.click(screen.getByText("My Collection"));
+        expect(window.location.pathname).toBe("/collection");
+    });
 })

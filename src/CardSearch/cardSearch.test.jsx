@@ -18,6 +18,12 @@ describe("cardSearch", () =>{
         // Act
         //   No Act steps needed
         // Assert
-    expect(screen.getByText("Loading...")).toBeInTheDocument();
+        screen.debug()
+        expect(screen.getByText("Loading...")).toBeInTheDocument();
     });
+
+    // test("another test", () => {
+        
+    // });
+
 })
