@@ -2,14 +2,6 @@
 
 ## A digital tool to search and add Magic the Gathering cards to a collection.
 
-## Roadmap
-
-Wireframe for the basic original intention of the application:
-
-![Wireframe Homepage](/public/images/magichomewireframe.png)
-![Wireframe Details](/public/images/cardinfowireframe.png)
-![Wireframe Collection](/public/images/cardcollectionwireframe.png)
-
 ### Features
 
 **Card Search**: Search for Magic the Gathering cards using the search bar or various filters such as name, mana cost, power, toughness, and color.
@@ -19,6 +11,14 @@ Wireframe for the basic original intention of the application:
 **Add**: If you like a card enough to add to your collection, the add button will send that card to your collection with all the other cards you have added.
 
 **Collection**: Using the "My Collection" button you are directed to the collection page where you are able to view all the cards you have added to your collection using the "Add" button. A total price of all the cards in your collection will be displayed along with "Delete" and "Delete All" buttons so you are able to add and delete as you please.
+
+## Roadmap
+
+Wireframe for the basic original intention of the application:
+
+![Wireframe Homepage](/public/images/magichomewireframe.png)
+![Wireframe Details](/public/images/cardinfowireframe.png)
+![Wireframe Collection](/public/images/cardcollectionwireframe.png)
 
 ### Demo
 
@@ -37,11 +37,20 @@ Wireframe for the basic original intention of the application:
 
 3. **Install dependencies**:
    npm install
+   npm install react-router-dom
+   npm i @uidotdev/usehooks
+   npm install -g vitest
+   npm install --save-dev vitest jsdom @testing-library/react @testing-library/jest-dom
+
 
 4. **Start the development server**:
    npm start
 
 5. **Open your browser** and navigate to whatever localhost port it opened on to view the application.
+
+### Run Tests
+
+npm test
 
 ### Acknowledgements
 
@@ -50,3 +59,5 @@ Wireframe for the basic original intention of the application:
 **React Router**: Used to handle the routing in our application
 
 **Scryfall API**: This is the API we fetched all our data from. Where the images and all the details used came from.
+
+**readme.so**: Used to structure ReadMe.md

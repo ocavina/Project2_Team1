@@ -29,6 +29,8 @@ export default function cardInfo(){
     var cardData = [];
 
 
+
+    //Local storage setup
     const [lStorage, savelStorage] = useLocalStorage('lstorage', []);
 
     useEffect(() => {
@@ -41,7 +43,7 @@ export default function cardInfo(){
 
 
     
-    
+    // function to allow cards to be added to collection
     function addToCollection(){
         for(let i of cardData){
             if(i.id == mainId){
@@ -56,11 +58,13 @@ export default function cardInfo(){
         ;
     }
 
-    
+    // backbutton navigation
     const backButton = () => {
         navigate(-1);
     }
     
+
+    // on the page load it fetches all data from the api and sends it to the first card function to be proccessed
     useEffect(() => {
         setLoading(true)
         fetch('https://api.scryfall.com/cards/'+ window.location.pathname.slice(10))
@@ -77,6 +81,8 @@ export default function cardInfo(){
         
     }, [])
 
+
+    // function to set all inital variables
     function firstcard(i){
         console.log(i)
         var cardObj = {}
@@ -126,6 +132,7 @@ export default function cardInfo(){
     }
 
 
+    //once the first card (main display card) has been set it then fetches for all of the alt art prints that a card could have
     useEffect(() => {
         setLoading(true)
         fetch(alt)
@@ -143,6 +150,7 @@ export default function cardInfo(){
     }, [done])
 
     
+    // for loop that runs if there are alt art cards. It goes through each card and makes an object out of the data that we can use.
     if(printsData){
         
         for(let i of printsData.data){
@@ -194,6 +202,7 @@ export default function cardInfo(){
 
                 
             </div>
+            {/* maps all of the alt art cards allows them to be clicked to become the "main" image and info */}
             <div className="card-card">
                     {cardData.map((item) => (
                         <div className='individual-card' key={item.id}>

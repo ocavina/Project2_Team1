@@ -138,7 +138,9 @@ export default function cardSearch(){
 
     if(loading){
         return (
-            <h2>Loading...</h2>
+                <>  
+                    <h1 className='loader'>Loading...</h1>
+                </>
         )
     }
 
