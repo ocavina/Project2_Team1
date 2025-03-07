@@ -13,24 +13,21 @@ export default function cardSearch(){
     const {setDetails} = useContext(detailsContext)
     const {collection, setCollection} = useContext(collectionContext);
     const [addCardFromSearch, setAddCardFromSearch] = useState(null)
+    const [showCardAddedMessage, setShowCardAddedMessage] = useState(false)
 
     var cardData = [];
     var num = 0
 
     // Ethan
 
-    function addToCollection(index){
-        for(let i of cardData){
-            if(i.id){
-                setCollection([...collection, i])
-                console.log(collection)
-            }
-    //         // setShowCardAddedMessage(true);
-    //         // setTimeout(() => {
-    //         //     setShowCardAddedMessage(false)
-    //         // }, 3000)
+    function addToCollection(card){
+        setCollection([...collection, card])
+            setShowCardAddedMessage(true);
+            console.log(collection)
+            setTimeout(() => {
+                setShowCardAddedMessage(false)
+            }, 3000)
         }
-    }
 
 
     
@@ -158,11 +155,11 @@ export default function cardSearch(){
                     <div className='card-image' key={item.id} onMouseOver = {() => setAddCardFromSearch(index)} onMouseOut = {() => setAddCardFromSearch(null)}>
                         <Link to={`/cardInfo/${item.id}`}>
                             <button>
-                                <img  src={item.imgL} id="smallPicture"  onClick = {() => setDetails(item)}/>
+                                <img  src={item.imgL} id="smallPicture" onClick = {() => setDetails(item)}/>
                             </button>
                         </Link>
                             {/* Ethan */}
-                            {addCardFromSearch === index && (<button onClick={() => addToCollection(index)}>Add</button>
+                            {addCardFromSearch === index && (<button onClick = {() => addToCollection(item)}>Add</button>
                         )}
                               {/* Ethan */}
                     </div>              
@@ -171,11 +168,11 @@ export default function cardSearch(){
 
             {/* <div className="favorite-card" key={item} onMouseOver = {() => setAddCardFromSearch(index)} onMouseOut = {() => setAddCardFromSearch(null)}>
             {addCardFromSearch === index && <button onClick={() => addToCollection(index)}>Add</button>}
-                {showCardAddedMessage && (
-                <div className = "card-added-message">Card Added to Collection</div>)} */}
-                {/* </div> */}
+            {/* </div> */}
             </div>
             {cardData.length == 0 ? <><h2>Your Search Did not match any results</h2> <Link to={"/"}><button>Back to search</button></Link> </>: <></>}
+            {showCardAddedMessage && (
+                <div className = "card-added-message">Card Added to Collection</div>)}
         </>
     )
 }

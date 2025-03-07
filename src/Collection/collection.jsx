@@ -5,6 +5,7 @@ import collectionContext from '../assets/collectionContext';
 import { useNavigate } from 'react-router-dom';
 import "./collection.css";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import cardSearch from '../CardSearch/cardSearch';
 
 
 
@@ -103,15 +104,15 @@ export default function collection(){
         <button onClick={() => removeAllFromCollection()}>Remove All</button>
         {showRemoveAllWarning && (
         <div className = "remove-all-confirmation">Are You Sure You Want to Remove All?
-        <div className = 'remove-all-buttons'>
-            <button onClick = {yesRemoveAll}>Yes</button>
-            <button onClick = {noDontRemoveAll}>No</button>
-        </div>
+            <div className = 'remove-all-buttons'>
+                <button onClick = {yesRemoveAll}>Yes</button>
+                <button onClick = {noDontRemoveAll}>No</button>
+            </div>
         </div>)}
         <button onClick={backButton}>Back</button>
         <div className="collection-container">
             {collection.map((item, index) => (
-            <div className="favorite-card" key={item} onMouseOver = {() => setShowingRemove(index)} onMouseOut = {() => setShowingRemove(null)}>
+            <div className="favorite-card" key={item.id} onMouseOver = {() => setShowingRemove(index)} onMouseOut = {() => setShowingRemove(null)}>
                 <Link to={`/cardInfo/${item.id}`} onClick={() => setDetails(item)}>
                 <img src={item.img} alt={item.name} />
                 <p>{(item.price)}</p>

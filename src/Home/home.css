@@ -4,7 +4,7 @@ body {
   padding: 0;
   background-color: #222831;
   /* background-color: white; */
-  background: url('./images/modern_black.jpg') no-repeat center center fixed;
+  /* background: url('./images/modern_black.jpg') no-repeat center center fixed; */
   background-size: cover;
 }
 

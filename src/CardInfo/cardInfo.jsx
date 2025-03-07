@@ -63,19 +63,9 @@ export default function cardInfo(){
     }
 
     
-    
-    
-
     const backButton = () => {
         navigate(-1);
     }
-
-    // const cardAddedMessage = () => {
-    //     setShowCardAddedMessage(true);
-    //         setTimeout(() => {
-    //             setShowCardAddedMessage(false)
-    //         }, 3000)
-    // }
     
     useEffect(() => {
         setLoading(true)
@@ -139,9 +129,6 @@ export default function cardInfo(){
         cardData.push(cardObj)
         setDone(true)
     }
-
-    
-
 
 
     useEffect(() => {
